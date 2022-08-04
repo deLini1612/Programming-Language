@@ -42,14 +42,14 @@ int isValidPassword(char pswd[], FILE *file)
     else
     {
         if (isContainLower(pswd) == 0)
-            //printf("Not contain lowercase letter - ");
-            fputs("Not contain lowercase letter - ",file);
+            // printf("Not contain lowercase letter - ");
+            fputs("Not contain lowercase letter - ", file);
         if (isContainUpper(pswd) == 0)
-            //printf("Not contain uppercase letter - ");
-            fputs("Not contain uppercase letter - ",file);
+            // printf("Not contain uppercase letter - ");
+            fputs("Not contain uppercase letter - ", file);
         if (isContainNonletter(pswd) == 0)
-            //printf("All is letter character - ");
-            fputs("All is letter character - ",file);
+            // printf("All is letter character - ");
+            fputs("All is letter character - ", file);
     }
     return 0;
 }
@@ -57,31 +57,21 @@ int isValidPassword(char pswd[], FILE *file)
 int main()
 {
     FILE *pswfile;
-
-
-
     FILE *result;
-        result = fopen("result.txt", "w+");
-
-
-
-
+    result = fopen("result.txt", "w+");
     char line[100];
     pswfile = fopen("pswfile.txt", "r");
     if (pswfile == NULL)
         return 1;
-    int i = 0;
     while (fgets(line, 100, pswfile))
     {
         line[strlen(line) - 1] = '\0';
-        if (isValidPassword(line,result))
+        if (isValidPassword(line, result))
         {
             fputs("Valid!\n", result);
-            //printf("Valid!\n");
         }
         else
-        fputs("Unvalid!\n", result);
-            //printf("Unvalid\n");
+            fputs("Unvalid!\n", result);
     }
     fclose(result);
     fclose(pswfile);
