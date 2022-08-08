@@ -1,33 +1,26 @@
 #include <iostream>
+#include <iterator>
+#include <map>
 using namespace std;
-class ClAsS
+int main()
 {
-public:
-static int numBorn;
-static int numLiving;
-ClAsS(){
-    numBorn++;
-    numLiving++;
-}
-~ClAsS(){
-    numLiving--;
-    cout<<"Destructor called"<<endl;
-}
-void print(){
-    cout<<"Number of objects created: "<<numBorn<<endl;
-    cout<<"Number of objects living: "<<numLiving<<endl;
-}
-};
-int ClAsS::numBorn = 0;
-int ClAsS::numLiving = 0;
+    map<string, int> hieudz;
+    map<string, int>::iterator it;
+    string str;
+    cout<<" -----------LET'S START -------------"<<endl;
+    while (getline(std::cin, str))
+    {
 
-int main(){
-    ClAsS *o1 = new ClAsS();
-    ClAsS *o3 = new ClAsS();
-    ClAsS o2;
-    delete o3;
-    o3->print();
-    cout<<"-----------------"<<endl;
-    o2.print();
+        if ((it = hieudz.find(str)) != hieudz.end())
+            hieudz[str]++;
+        else
+            hieudz.insert({str, 1});
+    }
+    cout<<"------------THE RESULT_______________"<<endl;
+    for (it = hieudz.begin(); it != hieudz.end(); ++it)
+    {
+        cout << it->first << "   " << it->second
+             << '\n';
+    }
     return 0;
 }
